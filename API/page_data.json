@@ -1,0 +1,11 @@
+{
+	"pages" : {
+		"0_0_0" : {
+			"coords": [0,0,0],
+			"url": "../wanderpath/test_page.html",
+			"title": "a test page",
+			"author": "polyducks",
+			"desc": "A ponderous page ponders itself."
+		}
+	}
+}
