@@ -67,46 +67,80 @@ API.user = {
 
 	Page_Ready(function(){
 		var navigation = document.querySelector("#wanderverse-navigation");
+
 		if ( navigation ){
 
-			/*
 
-				<div id="wn-map">
-					<ul>
-						<li class="wn-populated">
-							<a class="wn-link" href="">
-								<span class="wn-title"></span>
-								<span class="wn-author"></span>
-								<span class="wn-desc"></span>
-							</a>
-						</li>
-						<li class="wn-unpopulated"></li>
-						...
-					</ul>
-				</div>
+			//Random page
 
-			*/
+			(function(){
 
-			var map = document.createElement("DIV");
-			map.id = "wn-map";
-			var ul = document.createElement("UL");
-			for ( var x = 0; x < API.settings.map_size; x++ ){
-				for ( var y = 0; y < API.settings.map_size; y++ ){
-					let li = document.createElement("LI");
-						var title = document.createElement("SPAN");
-							title.className = "wn-title";
-							li.appendChild(title);
-						var author = document.createElement("SPAN");
-							author.className = "wn-author";
-							li.appendChild(author);
-						var desc = document.createElement("SPAN");
-							desc.className = "wn-desc";
-							li.appendChild(desc);
-					ul.appendChild(li);
+				var a = document.createElement("A");
+
+				var all_entries = (function(){
+					var return_array = [];
+					for ( var x in API.page_data.pages ){
+						if ( API.page_data.pages.hasOwnProperty(x) ){
+							return_array.push( API.page_data.pages[x] );
+						}
+					}
+					return return_array;
+				})();
+
+				var random_entry = all_entries[ Math.round(Math.random() * (all_entries.length-1)) ];
+
+				a.href = random_entry.url;
+				a.innerText = "Go to random entry";
+
+				navigation.appendChild(a);
+
+			})();
+
+
+
+			//MAP
+			(function(){
+
+				/*
+
+					<div id="wn-map">
+						<ul>
+							<li class="wn-populated">
+								<a class="wn-link" href="">
+									<span class="wn-title"></span>
+									<span class="wn-author"></span>
+									<span class="wn-desc"></span>
+								</a>
+							</li>
+							<li class="wn-unpopulated"></li>
+							...
+						</ul>
+					</div>
+
+				*/
+
+				var map = document.createElement("DIV");
+				map.id = "wn-map";
+				var ul = document.createElement("UL");
+				for ( var x = 0; x < API.settings.map_size; x++ ){
+					for ( var y = 0; y < API.settings.map_size; y++ ){
+						let li = document.createElement("LI");
+							var title = document.createElement("SPAN");
+								title.className = "wn-title";
+								li.appendChild(title);
+							var author = document.createElement("SPAN");
+								author.className = "wn-author";
+								li.appendChild(author);
+							var desc = document.createElement("SPAN");
+								desc.className = "wn-desc";
+								li.appendChild(desc);
+						ul.appendChild(li);
+					}
 				}
-			}
-			map.appendChild(ul);
-			navigation.appendChild(map);
+				map.appendChild(ul);
+				navigation.appendChild(map);
+
+			})();
 
 
 		}
