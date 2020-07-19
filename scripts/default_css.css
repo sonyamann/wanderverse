@@ -5,11 +5,42 @@
 /*-----------------------------------------
 MAP NAVIGATION
 -----------------------------------------*/
+
+#wanderverse-navigation{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 200px;
+	text-align: center;
+	border-left: 1px solid black;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: visible;
+	padding: 25px;
+}
+
+/*#wn-map-trigger{
+	display: inline-block;
+	padding: 0px 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+	#wn-map-trigger:hover{
+		background-color: red;
+	}
+#wn-map{
+	display: none;
+}
+	#wn-map:hover,
+	#wn-map-trigger:hover + #wn-map{
+		display: block;
+	}*/
 #wn-map{
 	display: block;
 	width: 150px;
 	height: 150px;
 	overflow: hidden;
+	margin: 0 auto 0.5em;
 }
 	#wn-map ul{
 		display: flex;
