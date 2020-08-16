@@ -1,141 +1,228 @@
-var API = {};
+	var API = {};
 
-API.page_data = {
-	"pages" : {
-		"0_0_0" : {
-			"coords": [0,0,0],
-			"url": "../wanderpath/test_page.html",
-			"title": "a test page",
-			"author": "polyducks",
-			"desc": "A ponderous page ponders itself."
+	API.page_data = {
+		"pages" : {
+
+			"0_0" : {
+				"coords": [0,0],
+				"url": "404/index.html",
+				"title": "404",
+				"author": "Polyducks",
+				"desc": "A poem about 404 pages"
+			},
+			"0_-1" : {
+				"coords": [0,-1],
+				"url": "gazebo/index.html",
+				"title": "Gazebo",
+				"author": "Polyducks",
+				"desc": "A living description of a park"
+			},
+			"1_-1" : {
+				"coords": [1,-1],
+				"url": "indian_balsam/index.html",
+				"title": "Indian Balsam",
+				"author": "Polyducks",
+				"desc": "A plant study"
+			},
+			"0_1" : {
+				"coords": [0,1],
+				"url": "generic_template/index.html",
+				"title": "A template page",
+				"author": "Polyducks",
+				"desc": "blah blah blah"
+			},
+			"1_-2" : {
+				"coords": [1,-2],
+				"url": "article_template/index.html",
+				"title": "Article Template",
+				"author": "Polyducks",
+				"desc": "A template for articles"
+			},
 		},
-		"1_0_0" : {
-			"coords": [1,0,0],
-			"url": "../wanderpath/navigation_demo.html",
-			"title": "a navigation demo",
-			"author": "polyducks",
-			"desc": "A demonstration of navigation."
-		},
-		"2_0_0" : {
-			"coords": [2,0,0],
-			"url": "../wanderpath/poetry_template.html",
-			"title": "a simple poetry template",
-			"author": "polyducks",
-			"desc": "A demonstration of poetry."
+		"settings":{
+			path: "../"
 		}
-	}
-};
+	};
 
-API.settings = {
-	map_size: 5
-};
+	//INJECT NAVIGATION
+	(function(){
 
-API.user = {
-	x: 0,
-	y: 0,
-	visited: [],
-	cookies: false
-};
+		//grab injection target
 
-
-
-
-
-
-
-
-
-
-
-
-
-(function(){
-	Page_Ready = function(callback){
-		var activated = false;
-		if (document.readyState == "loaded" || document.readyState == "interactive" || document.readyState == "complete"){
-			activated = true;
-			callback();
-		}else{
-			document.addEventListener("readystatechange", function(){
-				if (( document.readyState == "loaded" || document.readyState == "interactive" || document.readyState == "complete" ) && !activated){
-					activated = true;
-					callback();
-				}
-			});
+		var inject_target = document.querySelector("#sidebar");
+		if ( !inject_target ){
+			return;
 		}
-	}
-
-	Page_Ready(function(){
-		var navigation = document.querySelector("#wanderverse-navigation");
-
-		if ( navigation ){
-
-			//MAP
-			(function(){
 
 
-				//<div id="wn-map">
-				//	<ul>
-				//		<li class="wn-populated">
-				//			<a class="wn-link" href="">
-				//				<span class="wn-title"></span>
-				//				<span class="wn-author"></span>
-				//				<span class="wn-desc"></span>
-				//			</a>
-				//		</li>
-				//		<li class="wn-unpopulated"></li>
-				//		...
-				//	</ul>
-				//</div>
+		//FUNCTIONS AND GLOBAL VARS
+		function Make_Room_URL(room){
+			return API.page_data.settings.path + room.url;
+		}
+		//user current room
+		var user_room = (function(){
+			//find current URL in the API
+			var href = document.location.href;
 
-				var map = document.createElement("DIV");
-				map.id = "wn-map";
-				var ul = document.createElement("UL");
-				for ( var x = 0; x < API.settings.map_size; x++ ){
-					for ( var y = 0; y < API.settings.map_size; y++ ){
-						let li = document.createElement("LI");
-							var title = document.createElement("SPAN");
-								title.className = "wn-title";
-								li.appendChild(title);
-							var author = document.createElement("SPAN");
-								author.className = "wn-author";
-								li.appendChild(author);
-							var desc = document.createElement("SPAN");
-								desc.className = "wn-desc";
-								li.appendChild(desc);
-						ul.appendChild(li);
-					}
-				}
-				map.appendChild(ul);
-				navigation.appendChild(map);
+			var found_page = null;
+			var match = "";
+			//for( var i = 0; i < API.page_data.pages.length; i++ ){
+			for( var i in API.page_data.pages ){
+				if ( API.page_data.pages.hasOwnProperty(i) ){
+					var page = API.page_data.pages[i];
+					var regex = new RegExp( page.url.replace(".", "\\.") + "$", "i" );
+					var temp_match = regex.exec( href )
 
-			})();
-
-			//Random page
-
-			(function(){
-
-				var a = document.createElement("A");
-
-				var all_entries = (function(){
-					var return_array = [];
-					for ( var x in API.page_data.pages ){
-						if ( API.page_data.pages.hasOwnProperty(x) ){
-							return_array.push( API.page_data.pages[x] );
+					if ( temp_match ){
+						if ( temp_match[0].length > match.length ){
+							found_page = page;
 						}
 					}
-					return return_array;
-				})();
+				}
+			}
+			return found_page;
+		})();
 
-				var random_entry = all_entries[ Math.round(Math.random() * (all_entries.length-1)) ];
+		//rooms as an array
+		var room_array = Object.values( API.page_data.pages );
 
-				a.href = random_entry.url;
-				a.innerText = "Go to random entry";
 
-				navigation.appendChild(a);
 
-			})();
 
+
+		var inject_HTML = document.createElement("DIV");
+
+		inject_HTML.innerHTML = `
+			<div id="sidebar-button">
+				<span id="sidebar-button-text"></span>
+			</div>
+
+			<nav id="sidebar-nav">
+
+				<a id="sidebar-title-link" href="https://wanderverse.org/">
+					<h2 id="sidebar-title" title="Wanderverse.org">Wanderverse.org</h2>
+				</a>
+
+				<ul id="sidebar-map">
+				</ul>
+
+				<ul id="nav-options">
+					<li>
+						<a id="nav-options-prev" href="" title="Previous" alt="Previous">&lt;</a>
+					</li>
+					<li>
+						<a id="nav-options-rand" title="Find a random page" alt="Find a random page">?</a>
+					</li>
+					<li>
+						<a id="nav-options-next" href="" title="Next" alt="Next">&gt;</a>
+					</li>
+				</ul>
+
+			</nav>`;
+
+		var sidebar_map = inject_HTML.querySelector("#sidebar-map");
+
+		function lookup_room_relative(x,y){
+			if ( user_room ){
+				var rel_x = user_room.coords[0];
+				var rel_y = user_room.coords[1];
+				return [ rel_x+x,rel_y+y ];
+			}
+			return [ x, y ];
 		}
-	});
-})();
+
+		//populate the map
+		for ( var y = -1; y <= 1; y++ ){
+			for ( var x = -1; x <= 1; x++ ){
+				var el = document.createElement("LI");
+
+				var coords = lookup_room_relative(x,y);
+
+				el.setAttribute("data-coord-x", coords[0] );
+				el.setAttribute("data-coord-y", coords[1] );
+
+				if ( x == 0 && y == 0 ){
+					el.classList.add("home");
+				}
+
+				var link_page = API.page_data.pages[ coords[0] + "_" + coords[1] ];
+
+				if ( link_page ){
+					el.classList.add("populated-room");
+					var link = document.createElement("A");
+					link.href = API.page_data.settings.path + link_page.url;
+					link.title = link_page.title + " by " + link_page.author;
+					el.appendChild(link);
+				}
+
+				sidebar_map.appendChild( el );
+			}
+		}
+
+		//set up buttons
+		(function(){
+			//prev
+			var prev = inject_HTML.querySelector("#nav-options-prev");
+			//next
+			var next = inject_HTML.querySelector("#nav-options-next");
+
+			var index = room_array.indexOf(user_room);
+
+			if ( index > 0 ){
+				prev.href = API.page_data.settings.path + room_array[index-1].url;
+			}else{
+				prev.removeAttribute("href");
+				prev.classList.add("button-disabled");
+			}
+			if ( index < room_array.length -1 ){
+				next.href = API.page_data.settings.path + room_array[index+1].url;
+			}else{
+				next.removeAttribute("href");
+				next.classList.add("button-disabled");
+			}
+
+		})();
+
+		//populate
+
+		inject_target.innerHTML = inject_HTML.innerHTML;
+
+		//-------------------------------
+		//add event listeners
+		//-------------------------------
+		(function(){
+			var btn = document.querySelector("#sidebar-button");
+
+			btn.addEventListener("click", function(){
+				inject_target.classList.toggle("sidebar-open");
+			});
+		})();
+
+		//------------
+		//Random btn
+		//------------
+		(function(){
+			var btn = document.querySelector("#nav-options-rand");
+
+			btn.addEventListener("click", function(e){
+				e.preventDefault();
+
+				user_index = room_array.indexOf( user_room )
+
+				var length = room_array.length;
+
+				var rnd_index;
+
+				do{
+					rnd_index = Math.floor( Math.random() * length );
+				}
+				while ( rnd_index == user_index );
+
+				var URL = Make_Room_URL( room_array[ rnd_index ] );
+
+				document.location.href = URL;
+
+			});
+		})();
+
+	})();

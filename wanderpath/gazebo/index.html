@@ -1,0 +1,1455 @@
+<link rel="stylesheet" href="../../scripts/default_css.css">
+
+<style>
+	HTML{
+		font-size: 16px;
+	}
+	@media screen and ( max-width: 770px ){
+		HTML{
+			font-size: 20px;
+		}
+	}
+
+	*{
+		box-sizing: border-box;
+		font-family: georgia;
+		color: #1a1a1a;
+		letter-spacing: 0.025em;
+		line-height: 1.1;
+	}
+	body,HTML{
+		max-width: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		min-height: 100%;
+	}
+	body{
+		background-image: URL('willow-bough-tiled.jpg');
+	}
+	img{
+		width: 100%;
+		max-width: 100%;
+		margin: 0 0 10px;
+		padding: 0;
+	}
+
+	h1{
+		/*font-family: verdana;*/
+		font-style: italic;
+		font-weight: normal;
+		background-color: #0F0F0F;
+		padding: 10px 10px 0;
+		border: 1px solid #0F0F0F;
+		color: white;
+		margin: 0;
+		font-size: 1.6rem;
+		line-height: 1;
+	}
+
+	p{
+		margin: 0 0 10px;
+		padding: 0;
+		font-size: 1rem;
+	}
+
+	#wrapper{
+		background-color: #FEFDEB;
+		background-color: #F5E9D1;
+		max-width: 500px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0;
+		padding-bottom: 40px;
+		border-bottom: 2px solid #1a1a1a;
+	}
+	@media screen and ( max-width: 770px ){
+		#wrapper{
+			padding: 0 10px;
+		}
+	}
+	#text-container{
+		padding: 10px;
+	}
+
+	#progress-bar{
+		position: relative;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+	#progress-bar label{
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%)translateY(-50%);
+		color: #888;
+		font-style: italic;
+	}
+	#progress-bar progress{
+		width: 100%;
+		border: 1px solid black;
+		background-color: white;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+   		appearance: none;
+   		border: 2px solid #555;
+   		border-radius: 10px;
+   		background-color: white;
+   		overflow: hidden;
+   		height: 1.5rem;
+   		border-style: none;
+   		-webkit-transition: all 0.4s ease-in-out;
+		-moz-transition: all 0.4s ease-in-out;
+		-ms-transition: all 0.4s ease-in-out;
+		-o-transition: all 0.4s ease-in-out;
+		transition: all 0.4s ease-in-out;
+	}
+	#progress-bar progress::-webkit-progress-bar{
+		background-color: white;
+		border: 2px solid #555;
+		border-radius: 10px;
+		overflow: hidden;
+		-webkit-transition: all 0.4s ease-in-out;
+		-moz-transition: all 0.4s ease-in-out;
+		-ms-transition: all 0.4s ease-in-out;
+		-o-transition: all 0.4s ease-in-out;
+		transition: all 0.4s ease-in-out;
+	}
+	#progress-bar progress::-webkit-progress-value{
+		background-color: black;
+		-webkit-transition: all 0.4s ease-in-out;
+		-moz-transition: all 0.4s ease-in-out;
+		-ms-transition: all 0.4s ease-in-out;
+		-o-transition: all 0.4s ease-in-out;
+		transition: all 0.4s ease-in-out;
+	}
+	#progress-bar progress::-moz-progress-bar{
+		background-color: black;
+		-webkit-transition: all 0.4s ease-in-out;
+		-moz-transition: all 0.4s ease-in-out;
+		-ms-transition: all 0.4s ease-in-out;
+		-o-transition: all 0.4s ease-in-out;
+		transition: all 0.4s ease-in-out;
+	}
+
+
+	/*================================
+	NIGHT THEME
+	================================*/
+	body.night{
+		background-image: URL('willow-bough-tiled-night.jpg');
+	}
+	body.night #wrapper{
+		background-color: #211C10;
+		border-bottom: 1px solid white;
+	}
+		body.night #wrapper *{
+			color: #6F735C;
+		}
+
+		body.night #progress-bar label{
+			color: #211C10;
+		}
+		body.night #wrapper #progress-bar progress{
+			border-color: #6F735C;
+			background-color: white;
+		}
+		body.night #wrapper #progress-bar progress::-webkit-progress-bar{
+			background-color: white;
+		}
+		body.night #wrapper #progress-bar progress::-webkit-progress-value{
+			background-color: #6F735C;
+		}
+		body.night #wrapper #progress-bar progress::-moz-progress-bar{
+			background-color: #6F735C;
+		}
+
+</style>
+
+<body>
+	<div id="sidebar"></div>
+
+	<div id="wrapper">
+		<h1>The Gazebo</h1>
+		<img src="gazebo_resize.png"/>
+		<div id="text-container">
+			<div id="progress-bar">
+				<label>Each moment is fleeting</label>
+				<progress id="time-lapsed" max="1800" value="0"></progress>
+			</div>
+			<!--<p>
+				The paths converge at the stone gazebo. Its cool shade offers respite from the sun.
+			</p>-->
+			<p> <span id="desc"></span> <span id="weather"></span></p>
+			<!--<p>
+				A family with children cavort around a blanket laid for a picnic on the grass. Bees buzz among the fragrant honeysuckle which drapes the walls.
+			</p>-->
+			<p>
+				<span id="scenery"></span><span id="general-people-action">The park is unnaturally empty.</span>
+			</p>
+
+			<!--<p id="specific-people-action">
+				There is nobody you recognise in the park today.
+			</p>-->
+
+			<!--<p>
+				Paths lead <a href="">north</a>, <a href="">south</a>, <a href="">east</a> and <a href="">west</a>.
+			</p>-->
+		</div>
+	</div>
+</body>
+
+<script>
+
+	(function(){
+
+		var t = {};
+
+		//============================================
+		//UPDATE TIME
+		//============================================
+
+		function Update_Time( date ){
+			t.obj = date;
+			t.time = t.obj.getTime();
+			t.ms = t.obj.getMilliseconds();
+			t.sec = t.obj.getSeconds();
+			t.min = t.obj.getMinutes();
+			t.hour = t.obj.getHours();
+			t.day = t.obj.getDay();
+			t.date = t.obj.getDate();
+			t.month = t.obj.getMonth()+1;
+			t.year = t.obj.getFullYear();
+
+			//prefix zero
+			function pz(value){
+				value = value.toString();
+				while ( value.length<2 ){
+					value = "0" + value;
+				}
+				return value;
+			}
+
+			t.rndString = t.year + "" + pz(t.month) + "" + pz(t.date) + "" + pz( (t.hour * 2) + Math.floor( t.min / 30 ) );
+			console.log( t.rndString );
+		};
+
+		Update_Time( new Date() );
+
+		//========================================================================================
+		//FUNCTIONS
+		//========================================================================================
+
+			//============================================
+			//RANDOM
+			//============================================
+
+			var random = {};
+			random.array = [];
+			random.fn = null;
+
+			function New_Random_Number(){
+				var rnd = random.fn()
+				random.array.push( rnd );
+				return rnd;
+			};
+			function New_Random_Array(value){
+				random.array = [];
+				// mulberry32 - an actual high quality 32-bit generator
+				var mb32=a=>(t)=>(a=a+1831565813|0,t=Math.imul(a^a>>>15,1|a),t=t+Math.imul(t^t>>>7,61|t)^t,(t^t>>>14)>>>0)/2**32;
+				random.fn = mb32(value);
+
+				//throw away the first random number
+				random.fn();
+
+				for ( var i = 0; i<10; i++ ){
+					New_Random_Number();
+				}
+			};
+
+			function Pick_Random_From_Array( arr ){
+				var max_length = arr.length;
+				var rnd = New_Random_Number();
+				var selection = Math.floor( max_length * rnd );
+				return arr[ selection ];
+			}
+
+
+
+		//============================================
+		// ELEMENTS
+		//============================================
+		var el = {};
+		el.desc = document.querySelector("#desc");
+		el.weather = document.querySelector("#weather");
+		el.lapsed = document.querySelector("#time-lapsed");
+		el.general_people_action = document.querySelector("#general-people-action");
+		el.specific_people_action = document.querySelector("#specific-people-action");
+		el.scenery = document.querySelector("#scenery");
+
+		//============================================
+		//TIME DRAIN
+		//============================================
+
+		//animate the time drain
+		function Calc_Time_Lapsed(){
+			Update_Time( new Date );
+			//time lapsed is measured in seconds
+			var time_over = (( t.min % 30 ) * 60) + t.sec;
+			el.lapsed.value = time_over;
+			if ( el.lapsed.value == 0 ){
+				Calc_Text();
+			}
+		}
+
+		//============================================
+		//INTERVAL
+		//============================================
+		window.setInterval( function(){
+			Calc_Time_Lapsed();
+		},1000);
+		Calc_Time_Lapsed();
+
+
+		//============================================
+		//CALCULATE THE TEXT
+		//============================================
+		function Calc_Text(){
+
+			//make a fresh random function from the rndString
+			New_Random_Array( t.rndString );
+
+			var sun = {};
+			var moon = {};
+			var season = (function(){
+				var seasons = [
+					"winter",
+					"spring",
+					"summer",
+					"autumn"
+				];
+
+				var month_seasons = [
+					0, //jan
+					0, //feb
+					1, //march
+					1, //april
+					1, //may
+					2, //june
+					2, //july
+					2, //august
+					3, //september
+					3, //october
+					3, //november
+					0  //december
+				];
+
+				return seasons[ month_seasons[ t.month ] ];
+			})();
+			var weather = {};
+
+			//============================================
+			//CALC SUNRISE/SUNSET
+			//============================================
+			function Sun( date ){
+
+				//Sunphase code adapted from a work in Ruby by AndyH
+
+				var day = date.getDate();
+				var month = date.getMonth()+1
+				var year = date.getFullYear();
+
+				var hour = date.getHours();
+				var min = date.getMinutes();
+
+				//portmeiron
+				var lattitude = 52.914788;
+				var longitude = -4.097347;
+
+
+				var OFFICIAL = 90.8333333333333
+				var CIVIL = 96.0
+				var NAUTICAL = 102.0
+				var ASTRONOMICAL = 108.0
+
+				var n = Math.floor( 275 * month / 9 ) - (Math.floor( (month + 9)/12 ) * ( 1 + Math.floor(year - 4 * Math.floor(year/4) + 2 ) / 3 )) + day - 30;
+
+				var t_sunrise = n + ((6 - longitude / 15) / 24) // => 33.2560083277778
+				var t_sunset = n + ((18 - (longitude / 15) / 15) / 24) // => 33.7504005551852
+
+				var m_sunrise = (0.9856 * t_sunrise) - 3.289 // => 29.4881218078578
+				var m_sunset = (0.9856 * t_sunset) - 3.289 // => 29.9753947871905
+
+				var l_sunrise = m_sunrise + (1.916 * Math.sin(m_sunrise * Math.PI / 180)) + (0.02 * Math.sin(2 * m_sunrise * Math.PI / 180)) + 282.634 // => 313.082398685899
+				var l_sunset = m_sunset + (1.916 * Math.sin(m_sunset * Math.PI / 180)) + (0.02 * Math.sin(2 * m_sunset * Math.PI / 180)) + 282.634 // => 313.583994036645
+
+				l_sunrise = (l_sunrise < 0) ? l_sunrise + 360 : (l_sunrise > 360 ? l_sunrise - 360 : l_sunrise) // => 313.082398685899
+				l_sunset = (l_sunset < 0) ? l_sunset + 360 : (l_sunset > 360 ? l_sunset - 360 : l_sunset) // => 313.583994036645
+
+				var ra_sunrise = 180 / Math.PI * Math.atan(0.91764 * Math.tan(l_sunrise * Math.PI / 180)) // => -44.4567778378133
+				ra_sunrise = (ra_sunrise < 0) ? ra_sunrise + 360 : (ra_sunrise > 360 ? ra_sunrise - 360 : ra_sunrise) // => 315.543222162187
+
+				var ra_sunset = 180 / Math.PI * Math.atan(0.91764 * Math.tan(l_sunset * Math.PI / 180)) // => -43.954525410305
+				ra_sunset = (ra_sunset < 0) ? ra_sunset + 360 : (ra_sunset > 360 ? ra_sunset - 360 : ra_sunset) // => 316.045474589695
+
+				ra_sunrise = (ra_sunrise + Math.floor(l_sunrise / 90) * 90 - Math.floor(ra_sunrise / 90) * 90) / 15 // => 21.0362148108124
+				ra_sunset = (ra_sunset + Math.floor(l_sunset / 90) * 90 - Math.floor(ra_sunset / 90) * 90) / 15 // => 21.0696983059797
+
+				var cos_h_sunrise = (Math.cos(OFFICIAL * Math.PI / 180) - (0.39782 * Math.sin(l_sunrise * Math.PI / 180) * Math.sin(lattitude * Math.PI / 180))) / (Math.cos(Math.asin(0.39782 * Math.sin(l_sunrise * Math.PI / 180))) * Math.cos(lattitude * Math.PI / 180)) // => 0.378067616130066
+				var cos_h_sunset = (Math.cos(OFFICIAL * Math.PI / 180) - (0.39782 * Math.sin(l_sunset * Math.PI / 180) * Math.sin(lattitude * Math.PI / 180))) / (Math.cos(Math.asin(0.39782 * Math.sin(l_sunset * Math.PI / 180))) * Math.cos(lattitude * Math.PI / 180)) // => 0.374467220030763
+
+				var h_sunrise = (360 - (180 / Math.PI * Math.acos(cos_h_sunrise))) / 15 // => 19.4809358408049
+				var h_sunset = (180 / Math.PI * Math.acos(cos_h_sunset)) / 15 // => 4.53390749233173
+
+				var ut_sunrise = h_sunrise + ra_sunrise - (0.06571 * t_sunrise) - 6.622 - (longitude / 15) // => 31.8540982110657
+				ut_sunrise = (ut_sunrise < 0) ? ut_sunrise + 24 : (ut_sunrise > 24 ? ut_sunrise - 24 : ut_sunrise) // => 7.85409821106569
+
+				var ut_sunset = h_sunset + ra_sunset - (0.06571 * t_sunset) - 6.622 - (longitude / 15) // => 16.9080668444968
+				ut_sunset = (ut_sunset < 0) ? ut_sunset + 24 : (ut_sunset > 24 ? ut_sunset - 24 : ut_sunset) // => 16.9080668444968
+
+				//ut_sunrise.floor, ((ut_sunrise - ut_sunrise.floor) * 60).round
+				//hour, minute
+
+				//BST function adapted from https://gist.github.com/alirussell/c52f58103db52f00fc70
+
+				function isBST(date) {
+					function lastSunday(month, year) {
+						var d = new Date();
+						var lastDayOfMonth = new Date(Date.UTC(year || d.getFullYear(), month+1, 0));
+						var day = lastDayOfMonth.getDay();
+						return new Date(Date.UTC(lastDayOfMonth.getFullYear(), lastDayOfMonth.getMonth(), lastDayOfMonth.getDate() - day));
+					}
+					var d = date || new Date();
+					var starts = lastSunday(2, d.getFullYear());
+					starts.setHours(1);
+					var ends = lastSunday(9, d.getFullYear());
+					starts.setHours(1);
+					return d.getTime() >= starts.getTime() && d.getTime() < ends.getTime();
+				}
+
+				if ( isBST( date ) ){
+					ut_sunset += 1;
+					ut_sunrise += 1;
+				}
+
+				var sun = {};
+				sun.ut_sunset = ut_sunset;
+				sun.ut_sunset = ut_sunrise;
+				sun.sunset_hour = Math.floor(ut_sunset);
+				sun.sunset_min = Math.round(( ut_sunset - Math.floor(ut_sunset)) * 60);
+
+				sun.sunrise_hour = Math.floor(ut_sunrise);
+				sun.sunrise_min = Math.round(( ut_sunrise - Math.floor(ut_sunrise)) * 60);
+
+				sun.day_phases = [ "night", "sunrise", "morning", "noon", "afternoon", "late afternoon", "sunset", "evening", "night" ];
+				/*sun.day_phase = (function(){
+					var phase_begin = ut_sunset - 0.5;
+					var phase_end = ut_sunset + 0.5;
+
+					//noon is always 12-1
+					//afternoon is always 1-half way to sunset
+					//late afternoon is always half way to sunset until sunset
+					//sunset is always sunset +- 30mins
+					//evening is always sunset+30mins + 2 hours
+					//night is sunset + 2.5 hours
+
+
+				})();*/
+				sun.is_day = (function(){
+					if (
+						( t.hour >= sun.sunset_hour &&
+						t.min >= sun.sunset_min ) ||
+						( t.hour <= sun.sunrise_hour &&
+						t.min <= sun.sunrise_min )
+					){
+						return false;
+					}
+					return true;
+				})();
+
+				sun.day_or_night = (function(){
+					if ( sun.is_day ){
+						return "day";
+					}
+					return "night";
+				})();
+
+				return sun;
+
+			}
+
+			sun = Sun( t.obj );
+
+
+			//============================================
+			//SET DAY/NIGHT STYLES
+			//============================================
+			(function(){
+				var body = document.querySelector("body");
+				if ( sun.is_day ){
+					body.classList.remove("night");
+				}else{
+					body.classList.add("night");
+				}
+			})();
+
+			//============================================
+			//CALC MOON
+			//============================================
+			function Moon(year, month, date){
+
+				var moon = {};
+				moon.phases = ["new", "waning crescent", "first quarter", "waxing gibbous", "full", "waning gibbous", "third quarter", "waxing crescent", "new" ];
+				moon.phase = null;
+				moon.days_into_moon_cycle = null;
+				moon.moon_cycle_fraction = null;
+				moon.moon_cycles_since_epoch = null;
+
+				//if sun.is_day then display it
+				var year = year;
+				var month = month;
+				var date = date;
+
+				//calculate the Julian Day
+				//Julian day numbers are a time since x.
+
+				// 1/6/2000 12:24:01 as expressed as days since January 1, 4713 BC
+				var last_known_new_moon = 2451549.5
+
+				//if Jan or Feb, subtract 1 from the year and add 12 to the month
+				if ( date == 1 || date == 2 ){
+					year--;
+					month+=12;
+				}
+				var A = Math.floor(year / 100 );
+				var B = Math.floor( A / 4 );
+				var C = 2-A+B;
+				var E = Math.floor( 365.25 * ( year + 4716 ) );
+				var F = Math.floor( 30.6001 * ( month + 1 ) );
+				var JD = C+date+E+F-1524.5;
+
+				var days_since_last_known_new_moon = JD - last_known_new_moon;
+
+				var new_moons = days_since_last_known_new_moon / 29.53;
+
+				var moon_cycle_fraction = new_moons - Math.floor(new_moons);
+
+				var days_into_moon_cycle = moon_cycle_fraction * 29.53;
+
+				//29.53 / eight phases of the moon
+				var moon_phase_interval = 3.69125;
+
+				//set values to return obj
+				moon.phase = Math.floor( days_into_moon_cycle / moon_phase_interval );
+				moon.days_into_moon_cycle = days_into_moon_cycle;
+				moon.moon_cycle_fraction = moon_cycle_fraction;
+				moon.moon_cycles_since_epoch = new_moons;
+
+				return moon;
+
+			};
+
+			moon = Moon( t.year, t.month, t.date );
+
+
+			//============================================
+			//CALC WEATHER
+			//============================================
+			function Weather(){
+
+				var weather_choices = {
+					"spring": {
+						"wet": {
+							"day":[
+								"The rain is thin but permeates everything.",
+								"Great puddles have formed on the lawn, soaking it through.",
+								"Heavy droplets of rain pelt the ground.",
+								"The rain thrums with intensity, misting on impact like a fog.",
+								"The rain is pleasantly warm, but rain none-the-less.",
+								"Heavy clouds loom pregnantly above.",
+								"Everything is dark with heavy rainclouds which loom menacingly.",
+								"The sky is blotted out with muddy clouds.",
+								"A momentary gap in the rain allows you to hear the gutters at work.",
+								"Blue-grey rainclouds smear the sky like a beautiful watercolour.",
+								"An unexpected storm rumbles across the park, turning the daytime grey."
+							],
+							"night":[
+								"No moon is visible in the sky, blotted out instead by heavy clouds.",
+								"Heavy drizzle makes it darker than usual.",
+								"A light rain plucks the leaves of the trees with its pitter-patter.",
+								"The air is thick with mist.",
+								"A cold rain is carried on the night-time breeze.",
+								"A momentary gap in the rain allows you to hear the gutters at work.",
+								"Showers crash intermittently between fine mists and the patter of raindrops falling from leaves.",
+								"The air is dense and warm with the flavour of impending lightning.",
+								"Lightning illuminates the park amid bitter a shower-storm.",
+								"Thunder rumbles on the distant horizon."
+							]
+						},
+						"dry": {
+							"day": [
+								"Mild spring sunshine illuminates the firmament.",
+								"The sky is a fair blue with spring sunshine.",
+								"Soft, billowing clouds drift across the sky.",
+								"The blue sky is speckled with clouds.",
+								"The sunlight is warm on the skin.",
+								"The sunlight is gentle and comforting.",
+								"Thin clouds traipse in the sky above.",
+								"White, fluffy clouds haze the blue of the sky.",
+								"A light warmth of sunshine warms the stones of the park.",
+								"The sun beams down, early in its summer-like intensity.",
+								"The last cold of winter drifts like a whisper on the breeze.",
+								"The breeze drafts through like a memory of winter, the golden sunlight brings hope for the impending summer.",
+								"The sunlight is warm to the touch."
+							],
+							"night": [
+								"A clear sky shows the cripness of the stars.",
+								"The sky is clear, showing the glowing moon.",
+								"Distant lights of the town can be seen in the distance.",
+								"It is a cold spring night, still crisp with winter's chill.",
+								"The night is cozy and warm.",
+								"It is bittersweet out tonight - the night air is warm, with a touch of spring's chill breeze.",
+								"The night air is fresh and warmed by the growth of new plants.",
+								"The night air is perfectly still.",
+								"Tonight is a chill one.",
+								"The night air could freeze the feathers off a bittern."
+							]
+						}
+					},
+					"summer": {
+						"wet": {
+							"day": [
+								"The rain is thin but permeates everything.",
+								"The sun peeks out from behind clouds, reminding everyone it's still there.",
+								"The sun is hiding behind tall cumulonimbus clouds which drag the sky like skyscrapers.",
+								"The sky grumbles under the weight of its water, ready to pour an outburst at any moment.",
+								"Rain comes down in plinks and plonks, threatening to deliver a heavy shower, but never quite making it.",
+								"The song of rain spatters against the park's paths.",
+								"The heat rises a fog from the chilled humidity.",
+								"Clouds roll across the sky like racing chariots.",
+								"A heavy wind skitters across the park, pulling everything along on its path.",
+								"Large raindrops fall from above like felines, accompanied by larger ones like canines, screeching and yowling in the wind."
+							],
+							"night": [
+								"It's a miserable, wet night.",
+								"The park is soaked through with rain.",
+								"Deep rumbles overhead give threats of rain.",
+								"Lightning crashes in the night sky, illuminating everything for split seconds.",
+								"A cold rain is carried on the night-time breeze.",
+								"Rain falls from above like a cooling salve for the thick night air.",
+								"Rain falls, rich and hot from its day basking in the suns rays.",
+								"Light rain scatters like a dense mist."
+							]
+						},
+						"dry": {
+							"day": [
+								"The sun gleams like gold across all available surfaces.",
+								"A gentle wind whips by, wicking off the heat of the day.",
+								"A gentle wind carries the warm breeze.",
+								"The sun beats down, thick and warm like too many jackets.",
+								"The sun is scorching hot today.",
+								"The sun is as hot as a heated kettle.",
+								"The park is glaringly warm in the heat from the summer sun.",
+								"The summer sun brings a heavy warmth, laden with tropical temperatures.",
+								"The light is mild, bourne through fine clouds.",
+								"Sunlight filters down through thin clouds that streak the sky like mackerel stripes.",
+								"The sun is so bright you can almost hear it.",
+								"The sun beats down directly from above."
+							],
+							"night": [
+								"The night is balmy and warm.",
+								"The heat of the day radiates up from the pavements.",
+								"The night is comfortably warm.",
+								"It is a night so comfortable even Shakespear could not dream of it.",
+								"The air feels alive with the comfortable warmth of summer",
+								"The night air is so still one could hear a penny drop on the other side of the park.",
+								"It's pitch black, yet objects still radiate their heat from a day in the sun.",
+								"The dry summer air is parching on the tongue"
+							]
+						}
+					},
+					"autumn": {
+						"wet": {
+							"day": [
+								"Rain is sweeping in from the west, guided by a tempestuous wind.",
+								"Wind and rain drag at the yellowing leaves on the trees.",
+								"The wind howls through, scattering leaves and dry debris with a driving rain.",
+								"Rain falls in thick sheets.",
+								"The sky above is soggy and wet like ink on blotting paper.",
+								"Rain pours miserably from above.",
+								"The downpour of rain seems to have no end.",
+								"Rain stops and starts as if undecided.",
+								"A scouring combination of wind and rain attacks the ground at slanted angles.",
+								"Wind and rain shred horizontally across the park.",
+								"Rain falls thickly all about, permeating everything.",
+								"The wind and rain make whispering progress across the park.",
+								"The rain falls so heavily that it almost seems like one congruent mass."
+							],
+							"night": [
+								"Rain falls blindly in the dark of night.",
+								"The wind howls like some forgotten beast.",
+								"A heavy fog blots out any sign of the moon.",
+								"The rain falls so heavily that one is unable to see their hand in front of their own face.",
+								"Dense rainclouds blot out the night sky.",
+								"Cold drizzle pours against the gazebo.",
+								"Rain falls, deep and wet.",
+								"A light rain trickles down from above.",
+								"Rain cascades from above.",
+								"Ice-cold rain skitters about, threatening snow."
+							]
+						},
+						"dry": {
+							"day": [
+								"Wind parades through the empty branches of the trees, celebrating the downfall of summer.",
+								"A cool wind whistles through the park.",
+								"The weak autumn sun gives what little heat it can offer.",
+								"The autumn sunshine is thin, like watered down soup.",
+								"The autumn sunshine filters down, immaterial and faint.",
+								"Lacy clouds traipse in the sky above.",
+								"The autumn sun feels cold in spite of its brightness.",
+								"Thick clouds crowd above.",
+								"Painted clouds hang in the sky above, passing over intimidatingly.",
+								"The autumn sun peers out between clouds laden with rain.",
+								"The cool sun sits stark in an empty sky.",
+								"The sun hangs in the sky.",
+								"The sun loiters in the sky above.",
+								"The autumn sun hangs low in the sky."
+							],
+							"night": [
+								"It's a cold autumn night.",
+								"Whispers of dead leaves can be heard in the dark.",
+								"The trees mutter in the night with their cold, crisp leaves.",
+								"Leaves fall in the dark like skittering rain.",
+								"A cold breeze rolls through the park.",
+								"The clear autumn night shows bright pinpricks of stars.",
+								"The autumn night lays out a beautiful carpet of stars above.",
+								"The empty sky is a canvas illuminated with the white band of the milky way.",
+								"The stars above stand out in crisp white contrast to the blue-black sky."
+							]
+						}
+					},
+					"winter": {
+						"wet": {
+							"day": [
+								"Snow falls in big, heavy flakes.",
+								"Snow carpets the ground unevenly.",
+								"Paths have been cut through the heavy snow that coats the pathways.",
+								"Icicles have formed on the gazebo.",
+								"The snow whips around the park, rushed through on a razor-wire breeze.",
+								"The icy cold bites at extremities.",
+								"Icy, cold snow hangs suspended in the breeze.",
+								"Snowflakes no bigger than a pinhead speckle the pavements.",
+								"Snow drifts in and out of the park on a waivering breeze.",
+								"Light snow is carried about the park on an indecisive wind."
+							],
+							"night": [
+								"The world is illuminated by reflected light on the snow. It almost looks like gloomy day time.",
+								"Hail pelts down from above, smashing and skittering everywhere.",
+								"Light, feathery snow drifts down in waves.",
+								"The ice underfoot crunches with satisfying crispness.",
+								"Ice-cold rain glazes the park.",
+								"A wet gale blows through the park.",
+								"It is a dark and miserable winter's night."
+							]
+						},
+						"dry": {
+							"day": [
+								"The sky is grey, illuminated only by a faint sun on the horizon.",
+								"The sky is a tawdry silver-grey.",
+								"The sky is as grey as tarnished silver.",
+								"It is a cold winter's day.",
+								"Winter digs its claws in with a chill wind.",
+								"A chill gale buffets through the park.",
+								"The sun's light is faint and pale.",
+								"The sun sits low on the horizon.",
+								"The winter sun is nothing more than a faint memory.",
+								"The winter sun provides a little light.",
+								"The sun casts cold, muffled, ambient light.",
+								"The winter sun barely makes a dent in the cold."
+							],
+							"night": [
+								"The stars above are as crisp as ice.",
+								"The night air is bitterly cold.",
+								"Orion's belt glitters in the winter sky.",
+								"The night air is sharp and cold.",
+								"The clear night sky is speckled with bright blue stars.",
+								"It is a chill winter's night.",
+								"It's a chilly night tonight.",
+								"The cold night air mists in the grass.",
+								"The night sky is studded with a panoply of stars."
+							]
+						}
+					}
+				};
+
+
+				//get today's weather and transition to tomorrow's weather
+				var chances = {
+					"spring": {
+						"wet": 7,
+						"dry": 9
+					},
+					"summer": {
+						"wet": 1,
+						"dry": 5
+					},
+					"autumn": {
+						"wet": 9,
+						"dry": 7
+					},
+					"winter": {
+						"wet": 3,
+						"dry": 4
+					}
+				};
+
+				var moisture = (function(){
+					var total_chance = chances[ season ].dry + chances[ season ].wet;
+					var rnd = New_Random_Number();
+					var chance = total_chance * rnd;
+					if ( chance >= chances[ season ].dry ){
+						return "wet";
+					}
+					return "dry";
+				})();
+
+				var is_day = sun.is_day;
+				var day_or_night = sun.day_or_night;
+
+				console.log( "Is day: " + is_day );
+
+				var choices = weather_choices[ season ][ moisture ][ day_or_night ];
+
+				var choice = Pick_Random_From_Array( choices );
+
+				console.log( choice );
+
+				el.weather.innerHTML = choice;
+
+				var weather_obj = {
+					"moisture": moisture
+				};
+
+				return weather_obj;
+
+			};
+
+			weather = Weather();
+
+
+			//variables:
+			// $name$ is the name of the entity
+			// $season$ is the name of the season
+			// $plants$ are the plants on display i.e. a red hibiscus
+			// $tree$ is the name of a planted tree. i.e. the giant oak, a small birch
+			// $birds$ is the name of the birds in residence. I.e. a flock of pigeons
+			// $bird$ is the singular of the birds in residence. I.e. a single pigeon
+			// $moon_phase$ is the current phase of the moon
+			// $job$ is the person's job
+
+			function Return_Action_Pool(person){
+
+			}
+
+			function person(conditions, action, profession, name, appearance, actions){
+				this.conditions = conditions;
+				this.action = action;
+				this.profession = profession;
+				this.name = name;
+				this.appearance = appearance;
+				this.actions = actions;
+			}
+
+			var data = {
+				//general actions any NPC can take
+				"actions": {
+					"interaction": [
+						"$name1$ passes the time of day with $name2$.",
+						"$name1$ catches up with $name2$.",
+						"$name1$ greets $name2$ as they cross paths.",
+						"$name1$ waves hello to $name2$.",
+						"$name1$ waves hello to $name2$, but the greeting is not returned.",
+						"$name1$ actively avoids $name2$, stepping off the path as they come close.",
+						"$name1$ gossips with $name2$.",
+						"$name1$ exchanges pleasantries with $name2$.",
+						"$name1$ complains to $name2$ about the hardships of being a $job$."
+					],
+					"lunch": [
+						"$name$ is sharing a picnic in the park.",
+						"$name$ sits at the bench and enjoys a packed lunch.",
+						"$name$ hurries away for lunch.",
+						"$name$ enjoys a simple lunch sat at the gazebo.",
+						"$name$ looks enviously at someone else's lunch.",
+						"Sat alone, $name$ eats a quiet luncheon."
+					],
+					"day": {
+						"dry": [
+							"$name$ is here, stroling about the park.",
+							"$name$ is out, enjoying the $season$ air.",
+							"$name$ has come out to enjoy the garden.",
+							"Walking the paths, $name$ is finishing their visit to the park.",
+							"$name$ is enjoying the scent of $plants$.",
+							"$name$ admires $plants$.",
+							"$name$ is obstructing the path with $birds$ while they feed them breadcrumbs.",
+							"$name$ sits quietly on a bench.",
+							"$name$ has paused on their walk to admire $tree$.",
+							"$name$ has taken a moment to appreciate $birds$.",
+							"$name$ sits, watching $birds$.",
+							"$name$ pauses to listen to the call of $bird$."
+						],
+						"wet": [
+							"$name$ has run for shelter beneath the gazebo.",
+							"$name$ stands quietly beneath the gazebo, waiting for the rain to stop.",
+							"$name$ is running to get out of the rain.",
+							"$name$ is wandering the park in spite of the rain.",
+							"$name$ is sheltering beneath $tree$.",
+							"$name$ is huddled beneath $tree$.",
+							"A sharp cry of alarm comes from $name$ as a cold waterdrop runs down their neck.",
+							"$name$ is wrapped up tightly against the weather.",
+							"$name$ wards off the rain with an elegant umbrella.",
+							"$name$ hunches their shoulders against the rain."
+						]
+					},
+					"night": {
+						"dry": [
+							"$name$ looks up at the $moon_phase$ moon.",
+							"$name$ passes through the park.",
+							"$name$ looks startled for a moment before resuming their walk around the park.",
+							"$name$ walks arm in arm with a stranger.",
+							"$name$ talks loudly with their friends as they move as a huddle through the dark.",
+							"$name$ walks at a quickened pace through the park.",
+							"$name$ whistles to themselves as they stroll in the night air.",
+							"$name$ passes through as quietly as a ghost.",
+							"$name$ is out for a night-time stroll.",
+							"$name$ is out, enjoying the $season$ night air.",
+							"Walking the paths, $name$ is finishing their visit to the park.",
+							"$name$ is enjoying the scent of $plants$."
+						],
+						"wet": [
+							"$name$ has run for shelter beneath the gazebo.",
+							"$name$ stands quietly beneath the gazebo, waiting for the weather to clear.",
+							"$name$ is running to get out of the rain.",
+							"$name$ is wandering the park in spite of the rain.",
+							"$name$ is taking a shortcut through the park to avoid the bad weather.",
+							"$name$ is sheltering beneath $tree$.",
+							"$name$ is huddled beneath $tree$.",
+							"A sharp cry of alarm comes from $name$ as a cold drop of water runs down their neck.",
+							"$name$ is wrapped up tightly against the weather.",
+							"$name$ wards off the weather with an elegant umbrella.",
+							"$name$ hunches their shoulders against the weather."
+						]
+					}
+					/*"sunny": [
+						"$name$ is in good spirits as they enjoy the weather.",
+						"$name$ sits on a bench, basking in the sun's warmth.",
+						"$name$ squints against the brightness of the sun as they take in the park.",
+						"$name$ is out and about in the sunshine.",
+						"$name$ complains loudly about the heat."
+					]*/
+				},
+				"people": [
+					{
+						"conditions": function(){
+							//Saturday, Sunday and Wednesday lunch time
+							if ([6,0,3].indexOf(t.day) != -1){
+								if ( t.hour >= 10 && t.hour < 15 ){
+									return true;
+								}
+							}
+							return false;
+						},
+						"action" : function(park_visitors){
+							if ( this.conditions() ){
+								//use park_visitors array to see if this character interacts with anyone
+							}
+						},
+						"profession": "museum curator",
+						"name": "Sir Targridy Scott",
+						"appearance": "a bearded man with surly eyebrows",
+						"actions": {
+							"interaction": [
+								"$name1$ bores $name2$ with some scientific factoids.",
+								"$name1$ looks mournfully at $name2$ as they walk about the park."
+							],
+							"dry": [
+								"$name$ thoughtfully pencils down some notes.",
+								"Pausing on the path, $name$ takes notes down into a journal."
+							],
+							"wet": [
+								"$name$ ploughs on sullenly through the rain, lost in his thoughts.",
+								"$name$ wrings out water from his beard."
+							],
+							"sunny": [
+								"$name$ has removed his jacket in favour of the sun's warmth.",
+								"Carrying his jacket over his shoulder, $name$ whistles a jaunty tune."
+							],
+							"night": [
+								"Under the cover of darkness, a bearded man woos a young lady.",
+								"$name$ wanders across the lawn in the faint light."
+							]
+						}
+					},
+					{
+						"conditions": function(){
+
+						},
+						"action" : function(){
+
+						},
+						"profession": "wife",
+						"name": "Lady Mowbry Scott",
+						"appearance": "a shrewd woman with a bonnet",
+						"actions": {
+
+						}
+					},
+					{
+						"conditions": function(){
+
+						},
+						"action" : function(){
+
+						},
+						"profession": "post office clerk",
+						"name": "Ms Alice Cosgrove",
+						"appearance": "a round woman with greying hair",
+						"actions": {
+
+						}
+					}
+				]
+
+			};
+
+
+
+
+			(function(){
+
+				//return it if no specific people action element is specified
+				if ( !el.specific_people_action ){
+					return;
+				}
+
+				var output_txt = "";
+
+				for ( var i = 0; i < data.people.length; i++ ){
+					var text = data.people[i].action();
+				}
+
+				if ( output_txt.length > 0 ){
+					el.specific_people_action.innerText = output_txt;
+				}else{
+					el.specific_people_action.innerText = "There is nobody you recognise in the park today.";
+				}
+
+			})();
+
+
+			//============================================
+			//GENERAL MEMBERS OF THE PUBLIC
+			//============================================
+			(function(){
+				var people_public = {
+					"spring":{
+						"wet":{
+							"day":[
+								"A few people brave the light showers to get outside.",
+								"The park is mostly deserted as people avoid the wet weather.",
+								"People scurry through the park weilding umbrellas",
+								"A small crowd has gathered under the gazebo to shelter from the rain.",
+								"People run for cover as the weather makes a turn for the worst",
+								"Children splash raucously in puddles.",
+								"People have come out in light jackets to take the air."
+							],
+							"night":[
+								"Most people are at home, comfortable in their beds.",
+								"A few hardier members of the public stroll about the park.",
+								"People pass in and out of visibility as they move through the park.",
+								"The park is empty and eerie.",
+								"People are slowly making their way home for the night."
+							]
+						},
+						"dry":{
+							"day":[
+								"Screaming children run haphazard through the park.",
+								"Pigeons coo and crowd as a family feed them breadcrumbs.",
+								"The good weather has attracted a swarm of people to the park today.",
+								"In spite of the good weather, only a few people mill around the park.",
+								"A couple chats idly as they pass.",
+								"A family walk through the park before disappearing around the bend.",
+								"The park is nearly empty of people.",
+								"The park is unnaturally empty."
+							],
+							"night":[
+								"The visitors are thinning out as the day comes to a close.",
+								"People come and go with the last dregs of daylight.",
+								"Quiet footsteps of visitors clack against the pavement in the night air.",
+								"The sound of distant voices is carried on the wind as the park winds down for the night."
+							]
+						}
+					},
+					"summer":{
+						"wet":{
+							"day":[
+								"The park is mostly deserted as people avoid the wet weather.",
+								"People scurry through the park weilding umbrellas",
+								"A small crowd has gathered under the gazebo to shelter from the poor weather.",
+								"People run for cover as the weather makes a turn for the worst",
+								"Children splash raucously in puddles.",
+								"The park is empty and quiet but for the splash of rain.",
+								"A few people have come out to the park as if to bathe in the rain."
+							],
+							"night":[
+								"Most people are at home, comfortable in their beds.",
+								"A few hardier members of the public stroll about the park.",
+								"People pass in and out of visibility as they move through the park.",
+								"The park is empty and eerie.",
+								"The park is empty and quiet but for the splash of rain.",
+								"The park is empty, but for the people who are mad enough to be out in this weather."
+							]
+						},
+						"dry":{
+							"day":[
+								"The clink of glasses carries on the air as people enjoy wine on the grass.",
+								"Screaming children run haphazard through the park.",
+								"Distant echoes of children at play reach you through the summer haze.",
+								"Pigeons coo and crowd as a family feed them breadcrumbs.",
+								"The good weather has attracted a swarm of people to the park today.",
+								"In spite of the good weather, only a few people mill around the park.",
+								"A couple chats idly as they pass.",
+								"A family walk through the park before disappearing around the bend.",
+								"The park is nearly empty of people.",
+								"People are in good spirits as they go about in the sunshine.",
+								"People wander lazily around the park.",
+								"People walk this way and that, slowly becoming redder in the summer sun.",
+								"People come and go, stopping occasionally to wipe their brows."
+							],
+							"night":[
+								"The visitors are thinning out as the day comes to a close.",
+								"People come and go with the last dregs of daylight.",
+								"Out to enjoy a warm evening, people wander about the park.",
+								"People wander about the park in the summer air.",
+								"Quiet footsteps of visitors clack against the pavement in the night air.",
+								"The sound of distant voices is carried on the wind as the park winds down for the night.",
+								"A few people are out for a walk in summer's lasting heat."
+							]
+						}
+					},
+					"autumn":{
+						"wet":{
+							"day":[
+								"Children scuff their feet in the mud.",
+								"Taking big leaps, a little girl splashes about in the puddles.",
+								"People run for cover under the gazebo.",
+								"The park is nearly deserted for the weather.",
+								"People move past against the weather, italicised.",
+								"The few people who are out in this weather have donned waterproofs.",
+								"The park is empty of visitors.",
+								"The park is unnaturally empty.",
+								"The park is quiet, with only one or two people making a quick dash across the paths."
+							],
+							"night":[
+								"People move past against the weather, italicised.",
+								"The few people who are out in this weather have donned waterproofs.",
+								"The park is empty of visitors.",
+								"The park is unnaturally empty.",
+								"The park is quiet, with only one or two people making a quick dash across the paths."
+							]
+						},
+						"dry":{
+							"day":[
+								"A family trundles past with their children.",
+								"Children are playing in the crunchy leaves of autumn.",
+								"People walk past, huddled in their woolen scarves.",
+								"The park is full of people moving around on brisk walks.",
+								"People come and go, pausing to absorb the autumnal sun."
+							],
+							"night":[
+								"People meander quietly along the paths.",
+								"People are walking quietly around the park.",
+								"Someone is playing fetch with their dog.",
+								"Somewhere in the distance a dog barks.",
+								"The park is empty."
+							]
+						}
+					},
+					"winter":{
+						"wet":{
+							"day":[
+								"Children laugh and cavort in the snow.",
+								"An impromptu snowman making competition has taken the park by storm.",
+								"Adults walk past, careful not to slip on the ice.",
+								"People walk with a waddling gait to avoid slipping on the ice.",
+								"Snowballs careen through the air as children stage a snowball fight.",
+								"The park is quiet and empty, but for the tracks left behind by visitors.",
+								"Families have come out to the park, their children swaddled in layers upon layers of warm winter clothing.",
+								"People have come out to the park, dressed more for an arctic expedition than for a day out.",
+								"The sound of chattering voices is muted by the dense snow."
+							],
+							"night":[
+								"Snow muffles everything as it lays heavy on the ground.",
+								"The park is deserted.",
+								"A few people scurry by in the crisp night air.",
+								"People crunch through the snow.",
+								"People wander around, admiring the snowmen.",
+								"The park is deserted, the only sign of people being the tracks they left behind.",
+								"People out on late strolls crunch through icy snow."
+							]
+						},
+						"dry":{
+							"day":[
+								"An old lady shuffles by.",
+								"A family go by, cheerful dispite the cold.",
+								"People huddle into their woolen clothes as they go by on a stroll.",
+								"A few people wander the park as distant dots on the horizon.",
+								"People meander the park, all red cheeks and puffing dragon's breath.",
+								"People move around in the pale sunlight.",
+								"People stroll about the park, out walking energetic dogs.",
+								"People walk through the park, letting out little clouds of steamy breath as they pass.",
+								"People walk past, displaying the full range of winter clothing available.",
+								"A group of teenagers go past, carrying iceskates over their shoulders.",
+								"The park is sparsely populated.",
+								"The park is practically empty.",
+								"People move to and fro in the park."
+							],
+							"night":[
+								"Someone pauses on the path to look up at the winter moon.",
+								"People move about the park slowly, like ghosts.",
+								"Blades of grass crunch underfoot as people make their way home.",
+								"People come and go in little puffs of steamy breath.",
+								"Visitors to the park are leaving towards the gates.",
+								"Desperate for that last bit of daylight, people linger in the park."
+							]
+						}
+					},
+				};
+
+				var output_text = "";
+
+				if ( !sun.is_day ){
+					if (
+						!(t.hour-3 < sun.sunset_hour &&
+						t.hour >= sun.sunset_hour)
+					){
+
+						output_text = Pick_Random_From_Array(
+							[
+								"It's late, and most people are in bed.",
+								"The park is empty.",
+								"Most people are in bed now.",
+								"The park is quiet.",
+								"An owl hoots somewhere in the dark.",
+								"It's too dark for most people to be outside."
+							]
+						);
+
+
+					}
+				}else{
+					var now_arr = people_public[ season ][ weather.moisture ][ sun.day_or_night ];
+					output_text = Pick_Random_From_Array( now_arr );
+				}
+
+				el.general_people_action.innerText = output_text + " ";
+
+			})();
+
+
+			//============================================
+			//TREES AND PLANTS
+			//============================================
+			(function(){
+				var trees_data = {
+					"spring":{
+						"wet":{
+							"day":[
+								"The oak tree rustles quietly in the breeze, new leaves vivid green.",
+								"The oak tree creaks in the wind.",
+								"Drops of water fall from the oak tree as it's pushed by the breeze.",
+								"The oak tree complains with a grinding of branches.",
+								"Birds complain as their shelter in the sycamore tree is shaken by high winds."
+
+							],
+							"night":[
+								"The oak tree stands like a silent observer.",
+								"The roots of the oak tree are gnarled and as solid as rich veins of coal.",
+								"Something scrabbles about overhead in the branches of the old oak.",
+								"The oak tree complains with a grinding of branches."
+							]
+						},
+						"dry":{
+							"day":[
+								"The oak tree creaks in the breeze.",
+								"The oak tree grumbles in a gentle breeze.",
+								"A squirrel skitters through the branches of the oak tree.",
+								"Newly budding sycamore leaves ooze a sticky sap."
+							],
+							"night":[
+								"The oak tree looms in the dark.",
+								"The oak tree rustles quietly to itself.",
+								"Something scrabbles in the roots of the oak tree."
+							]
+						},
+					},
+					"summer":{
+						"wet":{
+							"day":[
+								"Water drips from the leaves of the oak tree.",
+								"The oak tree provides inconsistent shelter from the rain.",
+								"The oak tree grumbles in the wind.",
+								"Water runs down the grooves of the oak tree."
+							],
+							"night":[
+								"A gale whips at the top leaves of the oak tree.",
+								"A localised shower shatters at the foot of the oak tree as droplets rain from the leaves.",
+								"Water runs down the grooves of the oak tree."
+							]
+						},
+						"dry":{
+							"day":[
+								"The oak tree creaks quietly to itself.",
+								"The oak tree sways slightly in a gentle breeze.",
+								"The oak tree is casting a grand shadow beneath it which pools at its roots.",
+								"A couple laze under the old oak tree.",
+							],
+							"night":[
+								"It's almost possible to hear the old oak tree growing.",
+								"Two lovers laze under the old oak tree.",
+								"The branches of the oak tree shake as they're raided by a squirrel."
+							]
+						},
+					},
+					"autumn":{
+						"wet":{
+							"day":[
+								"Loose leaves are torn from the oak tree by the wind.",
+								"The oak tree sheds acorns, which bounce and scatter among the roots.",
+								"Acorns fall from the oak tree with a gentle popping noise.",
+								"Large leaves spin away from their parent tree, falling to the ground in droves.",
+								"Sycamore seeds spin haphazardly through the air.",
+								"Like spinning propellers, sycamore seeds fall far from their parent tree.",
+								"One, then two, then tens of leaves detatch and fall from the sycamore tree, drifting airbourne for a moment.",
+								"The sycamore tree shakes in the rain, releasing its leaves."
+							],
+							"night":[
+								"The boughs of the old oak tree shake as a squirrel dashes among the branches.",
+								"The musty smell of decaying leaves fills the air.",
+								"The quiet scattering of sycamore leaves can be heard but not seen.",
+							]
+						},
+						"dry":{
+							"day":[
+								"Loose leaves are torn from the oak tree by the wind.",
+								"The oak tree sheds acorns, which bounce and scatter among the roots.",
+								"Acorns fall from the oak tree with a gentle popping noise.",
+								"Large leaves spin away from their parent tree, falling to the ground in droves.",
+								"Sycamore seeds spin haphazardly through the air.",
+								"Like spinning propellers, sycamore seeds fall far from their parent tree.",
+								"One, then two, then tens of leaves detatch and fall from the sycamore tree, drifting airbourne for a moment.",
+								"Dry leaves crunch as someone passes by."
+							],
+							"night":[
+								"The branches of the old oak tree shake as a squirrel dashes among the branches.",
+								"The musty smell of decaying leaves fills the air.",
+								"The quiet scattering of sycamore leaves can be heard but not seen.",
+								"Dry leaves crunch as someone passes by."
+							]
+						},
+					},
+					"winter":{
+						"wet":{
+							"day":[
+								"The oak tree is covered in crystaline icicles, hanging like fruit.",
+								"The oak tree is an icy blue under the winter sky.",
+								"The arms of the oak tree clatter menacingly."
+							],
+							"night":[
+								"Clattering of branches echo around the park from tree to tree.",
+								"The trees are starkly silent.",
+								"The old oak tree is stoic in the rain."
+							]
+						},
+						"dry":{
+							"day":[
+								"The oak tree is covered in crystaline icicles which glimmer and glitter in the faint sunlight.",
+								"The oak tree is still and as solid as stone.",
+								"The bare arms of the oak tree stand like gnarled fingers."
+							],
+							"night":[
+								"The oak tree stands as a silent observer.",
+								"The oak tree shivers as a crow lands in its branches.",
+								"The old oak tree squeaks as it settles then goes silent."
+							]
+						},
+					}
+				}
+
+				var output_text = "";
+
+				var now_arr = trees_data[ season ][ weather.moisture ][ sun.day_or_night ];
+
+				console.log( now_arr );
+
+				output_text = Pick_Random_From_Array( now_arr );
+
+				el.scenery.innerText = output_text + " ";
+			})();
+
+			//============================================
+			//ANIMALS
+			//============================================
+
+
+			/*var templates = [
+				[ "general", "weather", "people", "plants" ],
+				[ "general", "weather", "people", "birds" ],
+				[ "general", "weather", "people", "insects" ]
+			];*/
+
+
+			//generate the season
+			//first generate the weather. Wet/dry/windy/foggy/sunny/cloudy/thunder/snow/icy
+
+
+			var text = {};
+			text.general = "";
+			text.people = "";
+			text.plants = "";
+			text.birds = "";
+			text.insects = "";
+
+
+			//make general text
+			(function(){
+				var gazebo_descs = [
+					"The park's paths converge here at the great gazebo.",
+					"The paths of the park lead to a great marble gazebo.",
+					"Standing prominently among the grass and flowerbeds is the white marble gazebo.",
+					"Domed and with several columns, a white gazebo gives shelter here.",
+					"Standing proudly in the center of the park is a white stone gazebo.",
+					"A white stone gazebo is looking a little worse for wear in the middle of the park.",
+					"The stone gazebo marks out the cardinal directions on its columns.",
+					"Marking the center of the park, a white stone gazebo stands here.",
+					"Strong stone columns hold up the dome of the gazebo.",
+					"A stonework gazebo stands starkly in the middle of the park.",
+					"The gazebo stands timelessly where the paths meet."
+				];
+
+				el.desc.innerHTML = Pick_Random_From_Array( gazebo_descs );
+
+			})();
+
+
+
+
+		}
+		//calculate text on page load
+		Calc_Text();
+
+	})();
+
+</script>
+
+<script src="../../scripts/API.js"></script>
