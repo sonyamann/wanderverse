@@ -24,20 +24,6 @@
 				"author": "Polyducks",
 				"desc": "A plant study"
 			},
-			"0_1" : {
-				"coords": [0,1],
-				"url": "generic_template/index.html",
-				"title": "A template page",
-				"author": "Polyducks",
-				"desc": "blah blah blah"
-			},
-			"1_-2" : {
-				"coords": [1,-2],
-				"url": "article_template/index.html",
-				"title": "Article Template",
-				"author": "Polyducks",
-				"desc": "A template for articles"
-			},
 		},
 		"settings":{
 			path: "../"
