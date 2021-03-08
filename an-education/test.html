@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>An Education</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://wanderverse.org/scripts/default_css.css">
+		<script>
+            function show(elementID) {
+                var ele = document.getElementById(elementID);
+                if (!ele) {
+                    alert("no such element");
+                    return;
+                }
+
+                var pages = document.getElementsByClassName('page');
+                for(var i = 0; i < pages.length; i++) {
+                    pages[i].style.display = 'none';
+                }
+
+                ele.style.display = 'block';
+            }
+		</script>
+		<style>
+			HTML {
+				font-size: 16px;
+			}
+			
+			@media screen and ( max-width: 770px) {
+				HTML {
+					font-size: 20px;
+				}
+			}
+			
+			* {
+				box-sizing: border-box;
+				font-family: georgia;
+				color: #1a1a1a;
+				letter-spacing: 0.025em;
+				line-height: 1.1;
+			}
+			
+			body,
+			HTML {
+				max-width: 100%;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				min-height: 100%;
+			}
+			
+			body {
+				background-image: URL('willow-bough-tiled.jpg');
+			}
+			
+			img {
+				width: 100%;
+				max-width: 100%;
+				margin: 0 0 10px;
+				padding: 0;
+			}
+			
+			h1 {
+				/*font-family: verdana;*/
+				font-style: italic;
+				font-weight: normal;
+				background-color: #0F0F0F;
+				padding: 10px 10px 0;
+				border: 1px solid #0F0F0F;
+				color: white;
+				margin: 0;
+				font-size: 1.6rem;
+				line-height: 1;
+			}
+
+			p {
+				margin: 0 0 10px;
+				padding: 0;
+				font-size: 1rem;
+			}
+
+			#wrapper {
+				background-color: #FEFDEB;
+				background-color: #F5E9D1;
+				max-width: 500px;
+				width: 100%;
+				margin: 0 auto;
+				padding: 0;
+				padding-bottom: 40px;
+				border-bottom: 2px solid #1a1a1a;
+			}
+
+			@media screen and ( max-width: 770px) {
+				#wrapper {
+					padding: 0 10px;
+				}
+			}
+
+			#text-container {
+				padding: 10px;
+			}
+			
+			#link {
+				padding: 10px;
+			}
+			
+			a {
+				text-decoration: underline;
+				color: #494949;
+				cursor: pointer;
+			}
+			
+			#linknext {
+				font-size: larger;
+			}
+			
+			#linkprev {
+				font-size: x-small;
+			}
+			
+			audio (
+				font-size: x-small;
+			}
+		</style>
+	<body>
+		<div id="sidebar"></div>
+		<div id="wrapper">
+			<h1>An Education</h1>
+			
+			<article class="page" id="p1" style="">
+				<img src="img/1.png"/>
+				<div id="text-container">
+					<p>The door creaked open, and he peeked through. He could hear a phonograph playing somewhere in the room, playing strange folk dances through its floral horn.</p>
+					<p>"Oh," a voice coughed, "you're at the right place, Elm, come in, come in." A faint clank and a rustling noise.</p>
+					<p>Elm opened the door more widely and entered. He didn't know what to expect of this teacher, other than that he was old and had a reputation as a bit of an eccentric.</p>
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p2');">Next.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p2" style="display: none;">
+				<img src="img/2.png"/>
+				<div id="text-container">
+					<p>"Ah, the old folk call anyone eccentric if they have a modicum of wit and a dash of brightness," the teacher said, and coughed again.</p>
+					<p>Elm was a bit alarmed. How did this teacher—or, well, the plate above his chair bore the name <abbr title="/ˈr̥əvɛð/, or 'rhuh-veth'">"Rhyfedd"</abbr>—how did Rhyfedd know what he was thinking?</p>
+					<p>"What was that?" Rhyfedd said.</p>
+					<p>"Oh, erm," Elm started, "well, how did you know I was thinking about everyone calling you an eccentric?"</p>
+					<p>"You were projecting the thought very hard, and I was examining you. Simple procedure, really;"—here, Rhyfedd took a small sip from his mug—"one only needs practice."</p>
+					<p>After a pause, Elm said, "Well, you do seem quite different from my other teachers."</p>
+					<p>"Ah, that's because there's hardly any teachers worth their salt in these parts." Rhyfedd snorted. "Most of them are just interested in practicalities, never peeling back and looking behind the world around them. All types of forbidden topics, set curricula, 'you can't ask that'—not much to offer a bright spark, really."</p>
+					<p>Elm looked around the room.</p>
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p3');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p1');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p3" style="display: none;">
+				<img src="img/3.png"/>
+				<div id="text-container">
+					<p>He noticed a variety of unknown things: beakers, books, pots and pans, little bones of various creatures, and many, many pens. He began to grow excited.</p>
+					<p>"So, what are you planning to teach me?" he asked.</p>
+					<p>"Oh, all sorts of things!" Rhyfedd's eyes gleamed. "You'll have to commit to an apprenticeship, of course, but this world needs true scholars. Otherwise, from time to time, people will just run into bigger and bigger problems that seem insurmountable to them."</p>
+					<p>He paused, then coughed, then added, "Of course, there's some rules. Firstly, don't bother me while I'm brewing and drinking my tea." He chuckled. "Secondly, there <i>are</i> stupid questions, but if you're here now, you're probably not the sort to ask them."</p>
+					<p>Elm glanced around again, and this time noticed a huge manuscript lying open on the desk. "What is this right here?"</p>
+					<p>"That," Rhyfedd answered, "is a question I was hoping you'd ask. It's my compendium of knowledge. All sorts of knowledge. I'm adding to it here and there all the time, so forgive that it's so loosely bound. Need to be able to insert pages and all."</p>
+					<p>"What does it cover?" Elm asked.</p>
+					<p>"Everything I know, and everything you'll know once you're done studying with me." Rhyfedd heaved a sigh. "In truth, I've been hoping for someone to come along. In some time—hopefully a long while, although that's in the hands of Another—I might be in the ground, and someone ought to be there to carry this little project along."</p>
+					<p>"May I look through it?"</p>
+					<p>"Of course, of course! Look through it all you want. If you're good material, and you do seem to be, this is the framework of what you'll be studying for the next few years."</p>
+					<p>Gingerly, Elm opened the cover, gazed a bit at the frontispiece, and leafed through the massive tome.</p>
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p4');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p2');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p4" style="display: none;">
+				<img src="img/4.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p5');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p3');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p5" style="display: none;">
+				<img src="img/5.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p6');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p4');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p6" style="display: none;">
+				<img src="img/6.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p7');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p5');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p7" style="display: none;">
+				<img src="img/7.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p8');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p6');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p8" style="display: none;">
+				<img src="img/8.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p9');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p7');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p9" style="display: none;">
+				<img src="img/9.png"/>
+				<div id="text-container">
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p10');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p8');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p10" style="display: none;">
+				<img src="img/10.png"/>
+				<div id="text-container">
+					<p>"It's all very magnificent," Elm said, "but I'm perplexed by a few things here."</p>
+					<p>Rhyfedd coughed and replied, "What is it that bemuses you so?"</p>
+					<p>Elm said, "Well, for one, it's all well and good that you have pages on the goblin language, but why would anyone want to know much about the goblin language? Isn't their society marked by chaos? I'll read anything about goblins, they're such fascinating creatures, but I don't really see the use of <i>this</i> information, especially given they're not too fond of outsiders."</p>
+					<p>Rhyfedd's face dropped. He'd been dreading this question. "You might not be ready yet after all..."</p>
+					<p>Elm softly said, "Huh?"</p>
+					<p>Rhyfedd took a long sip from his mug, leaned closer to him, and said, "You asked one of the only forbidden questions. I'm truly very sorry, but I'll have to turn you away for now. But I will tell you why."</p>
+					<p>Elm's shoulders fell. He took a step closer to Rhyfedd, though, and Rhyfedd continued, "My dear Elm, nearly any knowledge is valuable for its own sake. If you were to keep asking what's the point of something, you'd find yourself trapped by it. Little by little, you'd come to a point where you don't desire to know anything at all, and don't wish to even get out of bed.
+					<p>"Knowing the goblin language is useful whether or not one could hope to be friendly with goblins. It is a piece of the world, and the world is what we study. Asking the use of something is proper indeed for a merchant or an artisan, but it is unbecoming of a scholar."</p>
+					<div id="link">
+						<a href="#" id="linknext" onclick="show('p11');">Next.</a><br><br>
+						<a href="#" id="linkprev" onclick="show('p9');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<article class="page" id="p11" style="display: none;">
+				<img src="img/11.png"/>
+				<div id="text-container">
+					<p>Rhyfedd stood up and led Elm to the door, still open from when Elm had come in. "Farewell," he said. "In some years, you might come back. When you're ready, I'll be happy to have you as my apprentice. Until then, I hope you learn and live well elsewhere."</p>
+					<p>Elm left, feeling rather sad. Trudging along the route back home, he became lost in his thoughts. </i>I was turned away...Ah, well. I don't think I'd do well surrounded by books anyway. Perhaps I'll stop seeing teachers altogether and go off on my own and things. That'll be fun!</i> With a newfound resolve, he began mentally plotting a map of all the world he knew about, thinking about how one day he'd set foot in all the places his other teachers had told him never to go.</p>
+					<p style="text-align: center;">❧</p>
+					<p>Rhyfedd settled back in his chair. "What a good boy," he said to himself. "He definitely has the spark in him, but perhaps scholarship won't do him good...Ah, who knows now? Maybe he'll be back. Maybe one day what he gleaned from the compendium will do him good; perhaps he'll even <a href="https://www.sonyasupposedly.com/elm-and-keep/">run across a goblin</a>." ∎</p>
+					<div id="link">
+						<a href="#" id="linkprev" onclick="show('p10');">Previous.</a>
+					</div>
+				</div>
+			</article>
+			
+			<audio preload="auto" controls loop src="song.wav">Sorry, but your browser doesn't support native audio.</i>
+		</div>
+		<script src="https://wanderverse.org/scripts/API.js"></script>
+	</body>
+</html>
